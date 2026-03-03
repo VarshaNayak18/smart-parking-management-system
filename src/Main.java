@@ -4,9 +4,20 @@ public class Main {
         
         // Creating a vehicle object
         Vehicle v1 = new Vehicle("KA01AB1234", "Car");
+
+        // Creating a parking slot
+        ParkingSlot slot1 = new ParkingSlot(1);
+
+        // Park vehicle
+        slot1.parkVehicle(v1);
         
-        System.out.println("Vehicle Number: " + v1.getVehicleNumber());
-        System.out.println("Vehicle Type: " + v1.getVehicleType());
-        System.out.println("Entry Time: " + v1.getEntryTime());
+        System.out.println("Vehicle parked in slot: " + slot1.getSlotNumber());
+        System.out.println("Is the slot occupied? " + slot1.isOccupied());
+
+        // Remove vehicle
+        slot1.removeVehicle();
+
+        System.out.println("Vehicle removed from slot: " + slot1.getSlotNumber());
+        System.out.println("Is the slot occupied? " + slot1.isOccupied());
     }
 }
