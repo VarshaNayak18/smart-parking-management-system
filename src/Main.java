@@ -1,29 +1,67 @@
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Smart Parking System Started");
+        Scanner scanner = new Scanner(System.in);
 
-        ParkingLot parkingLot = new ParkingLot(3);
+        System.out.println("Smart Parking System");
 
-        // Create vehicles
-        Vehicle v1 = new Vehicle("KA01AB1234", "Car");
-        Vehicle v2 = new Vehicle("KA05CD5678", "Car");
-        Vehicle v3 = new Vehicle("KA09EF1111", "Bike");
+        System.out.print("Enter number of parking slots: ");
+        int totalSlots = scanner.nextInt();
 
-        // Park vehicles
-        parkingLot.parkVehicle(v1);
-        parkingLot.parkVehicle(v2);
-        parkingLot.parkVehicle(v3);
+        ParkingLot parkingLot = new ParkingLot(totalSlots);
 
-        System.out.println("\nParking Status:");
-        parkingLot.displayStatus();
+        while (true) {
 
-        // Remove vehicle from slot 2
-        System.out.println("\nRemoving vehicle from slot 2...");
-        parkingLot.removeVehicle(2);
+            System.out.println("\n----- PARKING MENU -----");
+            System.out.println("1. Park Vehicle");
+            System.out.println("2. Remove Vehicle");
+            System.out.println("3. Show Parking Status");
+            System.out.println("4. Exit");
 
-        System.out.println("\nParking Status After Removal:");
-        parkingLot.displayStatus();
+            System.out.print("Enter choice: ");
+            int choice = scanner.nextInt();
+
+            if (choice == 1) {
+
+                System.out.print("Enter vehicle number: ");
+                String number = scanner.next();
+
+                System.out.print("Enter vehicle type (Car/Bike): ");
+                String type = scanner.next();
+
+                Vehicle vehicle = new Vehicle(number, type);
+                parkingLot.parkVehicle(vehicle);
+
+            }
+            else if (choice == 2) {
+
+                System.out.print("Enter slot number to remove vehicle: ");
+                int slotNumber = scanner.nextInt();
+
+                parkingLot.removeVehicle(slotNumber);
+
+            }
+            else if (choice == 3) {
+
+                parkingLot.displayStatus();
+
+            }
+            else if (choice == 4) {
+
+                System.out.println("Exiting program");
+                break;
+
+            }
+            else {
+
+                System.out.println("Invalid choice. Please enter valid choice");
+
+            }
+        }
+
+        scanner.close();
     }
 }
