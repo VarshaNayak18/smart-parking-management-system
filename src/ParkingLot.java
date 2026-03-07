@@ -35,9 +35,27 @@ public class ParkingLot {
         ParkingSlot slot = slots.get(slotNumber - 1);
 
         if (slot.isOccupied()) {
+
+            Vehicle vehicle = slot.getParkedVehicle();
+            long entryTime = vehicle.getEntryTime();
+            long exitTime = System.currentTimeMillis();
+            
+            long duration = exitTime - entryTime;
+            double hours = duration / (1000.0 * 60 * 60);
+            
+            if (hours < 1) {
+                hours = 1;
+            }
+            
+            double fee = hours * 10;
+            System.out.println("Vehicle Number: " + vehicle.getVehicleNumber());
+            System.out.println("Parking Duration: " + String.format("%.2f", hours) + " hours");
+            System.out.println("Parking Fee: ₹" + fee);
+            
             slot.removeVehicle();
             System.out.println("Vehicle removed from slot: " + slotNumber);
-        } else {
+        } 
+        else {
             System.out.println("Slot already empty!");
         }
     }
