@@ -46,9 +46,19 @@ public class ParkingLot {
             if (hours < 1) {
                 hours = 1;
             }
+
+            double rate;
             
-            double fee = hours * 10;
+            if (vehicle.getVehicleType().equalsIgnoreCase("Car")) {
+                rate = 20;
+            } else {
+                rate = 10;
+            }
+            
+            double fee = hours * rate;
+
             System.out.println("Vehicle Number: " + vehicle.getVehicleNumber());
+            System.out.println("Vehicle Type: " + vehicle.getVehicleType());
             System.out.println("Parking Duration: " + String.format("%.2f", hours) + " hours");
             System.out.println("Parking Fee: ₹" + fee);
             
