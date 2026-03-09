@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Vehicle {
 
     private String vehicleNumber;
@@ -18,8 +21,20 @@ public class Vehicle {
         return vehicleType;
     }
 
-    public long getEntryTime(){
+    public long getEntryTime() {
         return entryTime;
     }
 
+    public String getFormattedEntryTime() {
+        
+        LocalDateTime time = LocalDateTime.ofEpochSecond(
+            entryTime / 1000,
+            0,
+            java.time.ZoneOffset.UTC
+        );
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        
+        return time.format(formatter);
+    }
 }

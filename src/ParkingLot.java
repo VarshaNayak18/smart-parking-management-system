@@ -20,6 +20,7 @@ public class ParkingLot {
             if (!slot.isOccupied()) {
                 slot.parkVehicle(vehicle);
                 System.out.println("Vehicle parked in slot: " + slot.getSlotNumber());
+                System.out.println("Entry Time: " + vehicle.getFormattedEntryTime());
                 return;
             }
         }
@@ -61,6 +62,7 @@ public class ParkingLot {
 
             System.out.println("Vehicle Number: " + vehicle.getVehicleNumber());
             System.out.println("Vehicle Type: " + vehicle.getVehicleType());
+            System.out.println("Entry Time: " + vehicle.getFormattedEntryTime());
             System.out.println("Parking Duration: " + String.format("%.2f", hours) + " hours");
             System.out.println("Parking Fee: ₹" + fee);
             
@@ -74,9 +76,17 @@ public class ParkingLot {
 
     // Display available slots
     public void displayStatus() {
+        
         for (ParkingSlot slot : slots) {
-            System.out.println("Slot " + slot.getSlotNumber() +
-                    " | Occupied: " + slot.isOccupied());
+            
+            if (slot.isOccupied()) {
+                
+                System.out.println("Slot " + slot.getSlotNumber() + " | Occupied by: " + slot.getParkedVehicle().getVehicleNumber());
+            } 
+            else {
+                
+                System.out.println("Slot " + slot.getSlotNumber() + " | Empty");
+            }
         }
     }
 

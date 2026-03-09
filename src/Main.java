@@ -34,6 +34,11 @@ public class Main {
                 System.out.print("Enter vehicle type (Car/Bike): ");
                 String type = scanner.next();
 
+                if (!type.equalsIgnoreCase("Car") && !type.equalsIgnoreCase("Bike")) {
+                    System.out.println("Invalid vehicle type. Only Car or Bike allowed.");
+                    continue;
+                }
+
                 Vehicle vehicle = new Vehicle(number, type);
                 parkingLot.parkVehicle(vehicle);
 
@@ -60,7 +65,6 @@ public class Main {
             else if (choice == 5) {
 
                 parkingLot.showTotalRevenue();
-                break;
             }
             else if (choice == 6) {
 
