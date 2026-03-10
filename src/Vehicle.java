@@ -1,4 +1,7 @@
 import java.time.LocalDateTime;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Vehicle {
@@ -27,14 +30,10 @@ public class Vehicle {
 
     public String getFormattedEntryTime() {
         
-        LocalDateTime time = LocalDateTime.ofEpochSecond(
-            entryTime / 1000,
-            0,
-            java.time.ZoneOffset.UTC
-        );
+        Instant instant = Instant.ofEpochMilli(entryTime);
+        ZonedDateTime istTime = instant.atZone(ZoneId.of("Asia/Kolkata"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss 'IST'");
         
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        
-        return time.format(formatter);
+        return istTime.format(formatter);
     }
 }

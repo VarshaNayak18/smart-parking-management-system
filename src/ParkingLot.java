@@ -77,18 +77,22 @@ public class ParkingLot {
     // Display available slots
     public void displayStatus() {
         
+        System.out.println("\n----- PARKING STATUS -----");
         for (ParkingSlot slot : slots) {
             
             if (slot.isOccupied()) {
                 
-                System.out.println("Slot " + slot.getSlotNumber() + " | Occupied by: " + slot.getParkedVehicle().getVehicleNumber());
+                Vehicle vehicle = slot.getParkedVehicle();
+                System.out.println("Slot " + slot.getSlotNumber()
+                + " | " + vehicle.getVehicleType()
+                + " | " + vehicle.getVehicleNumber()
+                + " | Parked at: " + vehicle.getFormattedEntryTime());
             } 
             else {
-                
-                System.out.println("Slot " + slot.getSlotNumber() + " | Empty");
-            }
+            System.out.println("Slot " + slot.getSlotNumber() + " | Empty");
         }
     }
+}
 
     // To find Vehicle 
     public void findVehicle(String vehicleNumber) {
